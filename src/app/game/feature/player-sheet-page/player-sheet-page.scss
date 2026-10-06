@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+main {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 2rem;
+}
+@media (max-width: 42rem) {
+  main {
+    padding: 1rem;
+  }
+}

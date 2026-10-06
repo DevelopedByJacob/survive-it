@@ -1,0 +1,15 @@
+<header class="game-header">
+  @if (game.state(); as state) {
+    <p>Survive IT · {{ state.player.name }}</p>
+  }
+  <nav aria-label="Vistas de la partida">
+    <a routerLink="/juego" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      >Juego</a
+    >
+    @if (archive.hasGames()) {
+      <a routerLink="/historial" routerLinkActive="active">Historial</a>
+    }
+  </nav>
+</header>
+
+<router-outlet />

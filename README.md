@@ -1,59 +1,19 @@
-# SurviveIt
+# Disclaimer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.21.
+Este proyecto esta desarrollado puramente por diversión, aburrimiento y aprendizaje. Cualquier parecido con la realidad, referencias a compañías, celebridades o situaciones, es mera casualidad y no debe tomarse de modo serio. 
 
-## Development server
+# De qué va esto? Que es Survive IT?
 
-To start a local development server, run:
+# ¿Qué es esto?
 
-```bash
-ng serve
-```
+Soy un desarrollador front con algunos añitos de experiencia, pero por casualidades de los últimos proyectos que he trabajado, no había probado las versiones más recientes de angular, y trabajar en serio con Signals, sin Modules, etc. Y para hacer un portfolio típico y aburrido, pues pensé que mejor hacer este juego-parodia.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+En pleno 2026, es obvio que está creado a base de vibe coding. Pero al ser un proyecto con el principal objetivo de aprender, he intentado que sea más un 70/30 de lo que es puramente picar código, y obviamente revisar concienzudamente todo lo que hacía mi amigo GPT 5.6, centrandome sobretodo en lo nuevo de Angular, y en que la arquitectura tenga sentido (que si, que para un proyecto tan pequeño es difícil hacerlo mal, lo sé)
 
-## Code scaffolding
+# Idiomas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+El juego está escrito en español y traducido al inglés por IA. Estoy revisando dicha traduccion con calma, pero es posible que cuando lo pruebes aún hayan expresiones o bromas que no tengan sentido en inglés.
 
-```bash
-ng generate component component-name
-```
+# Quiero más
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Aqui pongo mi enlace a la web de apps? O a linkedin? Nuse.

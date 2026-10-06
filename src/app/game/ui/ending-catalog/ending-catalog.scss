@@ -1,0 +1,103 @@
+:host {
+  display: block;
+}
+.catalog {
+  padding-top: 1rem;
+  border-top: 1px solid #34405c;
+}
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+.count {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #34405c;
+  border-radius: 0.5rem;
+  background: #0f172a;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+li.discovered {
+  border-color: #38bdf8;
+  background: #172554;
+  color: #e2e8f0;
+}
+li.current {
+  border-color: #facc15;
+}
+small {
+  color: #facc15;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hint {
+  position: relative;
+}
+.hint-trigger {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 1px solid #7dd3fc;
+  border-radius: 50%;
+  background: #172554;
+  color: #7dd3fc;
+  cursor: help;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.tooltip {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  z-index: 1;
+  width: max-content;
+  max-width: min(16rem, 70vw);
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #7dd3fc;
+  border-radius: 0.5rem;
+  background: #020617;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-in;
+}
+// En móvil no hay hover: tocar el botón le da el foco y muestra la pista.
+.hint:hover .tooltip,
+.hint-trigger:focus + .tooltip {
+  opacity: 1;
+}
+.complete {
+  color: #7dd3fc;
+  font-size: 0.9rem;
+}

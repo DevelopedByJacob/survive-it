@@ -1,0 +1,111 @@
+<main>
+  <section class="history-page" aria-labelledby="history-title">
+    <a class="back" routerLink="/nueva-partida">← Nueva partida</a>
+    <h1 id="history-title">Historial de partidas</h1>
+
+    @if (archive.hasGames()) {
+      <div class="history-layout">
+        <ol class="game-list">
+          @for (game of archive.games(); track game.id) {
+            <li>
+              <button
+                type="button"
+                [class.selected]="selectedGame().id === game.id"
+                (click)="selectGame(game)"
+              >
+                <img [src]="game.player.avatarId | avatarSrc: game.player.age" alt="" />
+                <span
+                  ><strong>{{ game.player.name }}</strong
+                  ><small>{{ game.finishedAt | date: 'dd/MM/yyyy' }} · {{ game.year }}</small></span
+                >
+              </button>
+            </li>
+          }
+        </ol>
+
+        @if (selectedGame(); as game) {
+          <article class="game-detail">
+            <img
+              class="avatar"
+              [src]="game.player.avatarId | avatarSrc: game.player.age"
+              alt="Avatar de {{ game.player.name }}"
+            />
+            <p class="eyebrow">PARTIDA FINALIZADA · {{ game.year }}</p>
+            <h2>{{ game.player.name }}</h2>
+            <p>
+              {{ careerLabels[game.career.area] }} ·
+              {{ backgroundLabels[game.player.background] }} · {{ game.player.age }} años
+            </p>
+            <p class="outcome">{{ game.finalOutcome }}</p>
+            <dl>
+              <div>
+                <dt>Dinero ganado en nómina</dt>
+                <dd>{{ game.lifetimeEarnings | currency: 'EUR' : 'symbol' : '1.0-0' }}</dd>
+              </div>
+              <div>
+                <dt>Años cotizados</dt>
+                <dd>{{ game.contributionYears }}</dd>
+              </div>
+              <div>
+                <dt>Salario final</dt>
+                <dd>{{ game.stats.salary | currency: 'EUR' : 'symbol' : '1.0-0' }}/año</dd>
+              </div>
+              <div>
+                <dt>Empresas</dt>
+                <dd>{{ game.companies.length }}</dd>
+              </div>
+              <div>
+                <dt>Experiencia</dt>
+                <dd>{{ game.stats.experience }}/100</dd>
+              </div>
+              <div>
+                <dt>Reputación</dt>
+                <dd>{{ game.stats.reputation }}/100</dd>
+              </div>
+              <div>
+                <dt>Estrés</dt>
+                <dd>{{ game.stats.stress }}/100</dd>
+              </div>
+            </dl>
+            @if (game.companies.length) {
+              <p class="companies">{{ game.companies.join(' · ') }}</p>
+            }
+            <h3>Logros de esta partida</h3>
+            @if (game.achievements.length) {
+              <ul class="achievements">
+                @for (achievement of achievementDefinitions; track achievement.id) {
+                  @if (game.achievements.includes(achievement.id)) {
+                    <li
+                      [class.rarity-gold]="achievement.rarity === 'gold'"
+                      [class.rarity-silver]="achievement.rarity === 'silver'"
+                    >
+                      {{ achievement.title }}
+                    </li>
+                  }
+                }
+              </ul>
+            } @else {
+              <p>Ninguno</p>
+            }
+            <h3>Trayectoria salarial</h3>
+            @if (game.salaryHistory.length) {
+              <ul class="salary-history">
+                @for (change of game.salaryHistory; track $index) {
+                  <li>
+                    {{ change.year }} ·
+                    {{ change.previousSalary | currency: 'EUR' : 'symbol' : '1.0-0' }} →
+                    {{ change.salary | currency: 'EUR' : 'symbol' : '1.0-0' }}/año
+                  </li>
+                }
+              </ul>
+            } @else {
+              <p>Sin salario registrado.</p>
+            }
+          </article>
+        }
+      </div>
+    } @else {
+      <p>Aún no hay partidas terminadas. El historial empieza con tu primer final.</p>
+    }
+  </section>
+</main>

@@ -1,0 +1,94 @@
+<main>
+  @if (game.state(); as state) {
+    @if (game.currentScene(); as scene) {
+      <div class="game-layout">
+        <!-- En pantallas estrechas la ficha queda debajo de la escena: este resumen mantiene las
+        estadísticas a la vista mientras se decide. -->
+        <dl class="quick-stats" aria-label="Resumen de estadísticas">
+          <div>
+            <dt>Salario</dt>
+            <dd>{{ state.stats.salary | number: '1.0-0' }} €</dd>
+          </div>
+          <div class="experience">
+            <dt>Exp.</dt>
+            <dd>{{ state.stats.experience }}</dd>
+            <span class="bar" aria-hidden="true"
+              ><span [style.width.%]="state.stats.experience"></span
+            ></span>
+          </div>
+          <div class="reputation">
+            <dt>Rep.</dt>
+            <dd>{{ state.stats.reputation }}</dd>
+            <span class="bar" aria-hidden="true"
+              ><span [style.width.%]="state.stats.reputation"></span
+            ></span>
+          </div>
+          <div class="stress" [class.danger]="state.stats.stress >= 80">
+            <dt>Estrés</dt>
+            <dd>{{ state.stats.stress }}</dd>
+            <span class="bar" aria-hidden="true"
+              ><span [style.width.%]="state.stats.stress"></span
+            ></span>
+          </div>
+        </dl>
+
+        <app-player-sheet [state]="state" />
+
+        <section class="scene-card">
+          <p class="eyebrow">ESCENA ACTUAL · AÑO {{ state.year }} · {{ state.player.age }} AÑOS</p>
+          <h1>{{ scene.title }}</h1>
+          <p class="description">{{ scene.description }}</p>
+
+          @if (state.pendingOutcome; as outcome) {
+            <section class="outcome" aria-live="polite">
+              <p class="eyebrow">RESULTADO</p>
+              <p class="outcome-text">{{ outcome.text }}</p>
+
+              @if (getOutcomeEffects(outcome.effects).length) {
+                <ul class="effects" aria-label="Cambios de estadísticas">
+                  @for (effect of getOutcomeEffects(outcome.effects); track effect.label) {
+                    <li [class.negative]="effect.value < 0">
+                      @if (effect.isAbsolute) {
+                        {{ effect.label }}:
+                        {{ effect.value > 0 && effect.label === 'Cambio salarial' ? '+' : ''
+                        }}{{ effect.value | number: '1.0-0' }} €/año
+                      } @else {
+                        {{ effect.label }}: {{ effect.value > 0 ? '+' : '' }}{{ effect.value }}
+                      }
+                    </li>
+                  }
+                </ul>
+              }
+
+              @if (!outcome.endsGame && scene.type !== 'closing') {
+                <p class="time-passage">
+                  @if (outcome.yearsToAdvance === 1) {
+                    Pasa 1 año.
+                  } @else {
+                    Pasan {{ outcome.yearsToAdvance }} años.
+                  }
+                </p>
+              }
+              <button type="button" (click)="continueAfterOutcome()">Continuar</button>
+            </section>
+          } @else if (state.status === 'playing') {
+            <div class="choices">
+              @for (choice of game.availableChoices(); track choice.id) {
+                <button
+                  type="button"
+                  [class.highlighted]="choice.highlight"
+                  (click)="choose(choice.id)"
+                >
+                  @if (choice.highlight) {
+                    <span class="choice-star" aria-hidden="true">★</span>
+                  }
+                  {{ choice.text }}
+                </button>
+              }
+            </div>
+          }
+        </section>
+      </div>
+    }
+  }
+</main>

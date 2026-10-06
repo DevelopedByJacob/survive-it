@@ -1,0 +1,112 @@
+<main>
+  @if (game.state(); as state) {
+    <div class="end-layout">
+      <app-player-sheet [state]="state" />
+
+      <section class="summary-card" aria-labelledby="end-title">
+        <p class="eyebrow">FIN DE PARTIDA · {{ state.year }}</p>
+        <h1 id="end-title">{{ endingTitle() }}</h1>
+        <p class="final-outcome">{{ state.finalOutcome ?? 'Tu aventura ha llegado a su fin.' }}</p>
+
+        <section class="totals" aria-label="Resumen económico">
+          <div>
+            <span>Dinero ganado en nómina</span
+            ><strong>{{ state.lifetimeEarnings | number: '1.0-0' }} €</strong>
+          </div>
+          <div>
+            <span>Años cotizados</span><strong>{{ state.contributionYears }}</strong>
+          </div>
+          <div>
+            <span>Saltos salariales</span><strong>{{ state.salaryChangeCount }}</strong>
+          </div>
+          <div>
+            <span>Empresas</span><strong>{{ companies().length }}</strong>
+          </div>
+        </section>
+
+        <section class="history" aria-labelledby="salary-history-title">
+          <h2 id="salary-history-title">Trayectoria salarial</h2>
+          @if (state.salaryHistory.length) {
+            <ol>
+              @for (change of state.salaryHistory; track $index) {
+                <li>
+                  <span>{{ change.year }}</span>
+                  <span
+                    >{{ change.previousSalary | number: '1.0-0' }} € →
+                    {{ change.salary | number: '1.0-0' }} €/año</span
+                  >
+                  @if (change.companyName) {
+                    <small>{{ change.companyName }}</small>
+                  }
+                </li>
+              }
+            </ol>
+          } @else {
+            <p>Aún no se registró ningún salario durante esta partida.</p>
+          }
+        </section>
+
+        <app-ending-catalog
+          [discoveredIds]="discoveredEndingIds()"
+          [currentEndingId]="state.currentSceneId"
+        />
+
+        <section class="achievements" aria-labelledby="achievements-title">
+          <h2 id="achievements-title">
+            Logros
+            <span class="achievements-count"
+              >{{ unlockedAchievementCount() }}/{{ totalAchievementCount }}</span
+            >
+          </h2>
+          <ul>
+            @for (achievement of achievementDefinitions; track achievement.id) {
+              @let unlocked = isAchievementUnlocked(achievement.id);
+              <li
+                [class.unlocked]="unlocked"
+                [class.locked]="!unlocked"
+                [class.rarity-gold]="achievement.rarity === 'gold'"
+                [class.rarity-silver]="achievement.rarity === 'silver'"
+              >
+                @if (achievementIconSource(achievement.id, unlocked); as iconSource) {
+                  <img [src]="iconSource" alt="" aria-hidden="true" />
+                } @else {
+                  <span class="achievement-fallback" aria-hidden="true">★</span>
+                }
+                <div>
+                  <strong>{{ achievement.title }}</strong>
+                  @if (unlocked) {
+                    <small>{{ achievement.description }}</small>
+                  } @else {
+                    <div class="hint-row">
+                      <em>Bloqueado</em>
+                      <button
+                        type="button"
+                        class="hint-toggle"
+                        [attr.aria-expanded]="expandedHintId() === achievement.id"
+                        (click)="toggleHint(achievement.id)"
+                      >
+                        {{ expandedHintId() === achievement.id ? 'Ocultar pista' : 'Ver pista' }}
+                      </button>
+                    </div>
+                    @if (expandedHintId() === achievement.id) {
+                      <small class="hint-text">{{ achievement.description }}</small>
+                    }
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+
+        <div class="actions">
+          <button type="button" (click)="restart()">Jugar otra partida</button>
+          <a routerLink="/nueva-partida">Configurar una partida nueva</a>
+          <button type="button" class="secondary" (click)="share()">Compartir</button>
+          @if (shareFeedback(); as feedback) {
+            <span class="share-feedback" role="status">{{ feedback }}</span>
+          }
+        </div>
+      </section>
+    </div>
+  }
+</main>

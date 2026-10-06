@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+.sheet {
+  padding: 1.25rem;
+  border: 1px solid #34405c;
+  border-radius: 1rem;
+  background: #1e293b;
+}
+.eyebrow,
+dt {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.eyebrow {
+  margin: 0;
+}
+h2 {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.5rem;
+}
+.avatar {
+  display: block;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-top: 1rem;
+  border: 3px solid #38bdf8;
+  border-radius: 50%;
+  object-fit: cover;
+}
+h3 {
+  margin: 1.75rem 0 1rem;
+  font-size: 1rem;
+}
+.profile,
+.stats {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+.profile {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+dd {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.stat {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem;
+}
+.stat .bar {
+  grid-column: 1 / -1;
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #334155;
+}
+.stat .bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+.experience .bar span {
+  background: #38bdf8;
+}
+.reputation .bar span {
+  background: #34d399;
+}
+.stress .bar span {
+  background: #f59e0b;
+}
+@media (max-width: 32rem) {
+  .profile {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,38 @@
+<section class="catalog" aria-labelledby="ending-catalog-title">
+  <h2 id="ending-catalog-title">
+    Finales
+    <span class="count">{{ discoveredCount() }}/{{ items().length }}</span>
+  </h2>
+
+  <ul>
+    @for (item of items(); track item.sceneId) {
+      <li [class.discovered]="item.discovered" [class.current]="item.sceneId === currentEndingId()">
+        @if (item.discovered) {
+          <span>{{ item.title }}</span>
+          @if (item.sceneId === currentEndingId()) {
+            <small>Este final</small>
+          }
+        } @else {
+          <span aria-label="Final sin descubrir">???</span>
+          @if (item.sceneId === hintedSceneId()) {
+            <span class="hint">
+              <button
+                type="button"
+                class="hint-trigger"
+                aria-label="Ver pista de un final sin descubrir"
+                aria-describedby="ending-hint"
+              >
+                ?
+              </button>
+              <span id="ending-hint" role="tooltip" class="tooltip">{{ item.hint }}</span>
+            </span>
+          }
+        }
+      </li>
+    }
+  </ul>
+
+  @if (!hintedSceneId()) {
+    <p class="complete">Has descubierto todos los finales. Ya puedes jubilarte de verdad.</p>
+  }
+</section>

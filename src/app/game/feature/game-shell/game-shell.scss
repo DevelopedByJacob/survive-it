@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background: #121826;
+  color: #f8fafc;
+  font-family: Inter, system-ui, sans-serif;
+}
+.game-header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #121826;
+}
+.game-header p {
+  margin: 0;
+  font-weight: 700;
+}
+nav {
+  display: flex;
+  gap: 0.5rem;
+}
+a {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #475569;
+  border-radius: 0.4rem;
+  color: #cbd5e1;
+  text-decoration: none;
+}
+a.active {
+  border-color: #38bdf8;
+  color: #7dd3fc;
+}
+@media (max-width: 42rem) {
+  .game-header {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+}

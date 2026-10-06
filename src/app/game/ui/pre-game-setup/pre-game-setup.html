@@ -1,0 +1,81 @@
+<section class="setup-card" aria-labelledby="setup-title">
+  <p class="eyebrow">NUEVA PARTIDA</p>
+  <h1 id="setup-title">¿Quién eres?</h1>
+  <p class="intro">
+    Empiezas con 25 años, la universidad (o tu postadolescencia) se te hizo cuesta arriba, pero
+    llegas justo a tiempo para pillar la buena época de IT, antes de que la IA nos sustituya a
+    todos.
+  </p>
+
+  <form (ngSubmit)="startGame()">
+    <label for="player-name">¿Cómo te llamas?</label>
+    <input
+      id="player-name"
+      name="name"
+      [(ngModel)]="name"
+      required
+      maxlength="30"
+      autocomplete="name"
+    />
+
+    <fieldset>
+      <legend>Elige tu avatar</legend>
+      <div class="avatar-grid">
+        @for (avatar of avatars; track avatar.id) {
+          <label class="avatar-option" [class.selected]="selectedAvatarId === avatar.id">
+            <input type="radio" name="avatar" [value]="avatar.id" [(ngModel)]="selectedAvatarId" />
+            <img [src]="avatar.src" [alt]="avatar.label" />
+          </label>
+        }
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Elige tu rol inicial</legend>
+      <div class="option-grid">
+        @for (role of roles; track role.value) {
+          <label class="option" [class.selected]="selectedRole === role.value">
+            <input type="radio" name="role" [value]="role.value" [(ngModel)]="selectedRole" />
+            <span>{{ role.label }}</span>
+            <small [innerHTML]="role.description"></small>
+          </label>
+        }
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>¿Cuál es tu background?</legend>
+      <div class="option-grid backgrounds">
+        <label class="option" [class.selected]="selectedBackground === 'no-degree'">
+          <input
+            type="radio"
+            name="background"
+            value="no-degree"
+            [(ngModel)]="selectedBackground"
+          />
+          <span>Sin titulación</span>
+          <small>Le cambiaste la contraseña al wifi y te acabaste motivando.</small>
+        </label>
+        <label class="option" [class.selected]="selectedBackground === 'university'">
+          <input
+            type="radio"
+            name="background"
+            value="university"
+            [(ngModel)]="selectedBackground"
+          />
+          <span>Carrera universitaria</span>
+          <small
+            >Después de siete años lo conseguiste: tienes tu papelito y un hígado de hierro.</small
+          >
+        </label>
+        <label class="option" [class.selected]="selectedBackground === 'bootcamp'">
+          <input type="radio" name="background" value="bootcamp" [(ngModel)]="selectedBackground" />
+          <span>Bootcamp/FP</span>
+          <small>Te prometieron 50k full remote, aprendiste a desconfiar de las promesas.</small>
+        </label>
+      </div>
+    </fieldset>
+
+    <button type="submit" [disabled]="!canStart">Empezar tu aventura en IT</button>
+  </form>
+</section>

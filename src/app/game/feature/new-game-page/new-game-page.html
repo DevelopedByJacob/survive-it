@@ -1,0 +1,11 @@
+<main>
+  @if (game.state(); as activeGame) {
+    <a class="history-link" [routerLink]="continueLink()">
+      Continuar partida de {{ activeGame.player.name }}
+    </a>
+  }
+  @if (archive.hasGames()) {
+    <a class="history-link" routerLink="/historial">Ver historial de partidas</a>
+  }
+  <app-pre-game-setup [savedName]="game.savedPlayerName()" (gameStarted)="startGame($event)" />
+</main>

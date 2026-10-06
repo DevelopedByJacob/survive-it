@@ -1,0 +1,57 @@
+<aside class="sheet" aria-labelledby="sheet-title">
+  <p class="eyebrow">TU PERFIL</p>
+  <img
+    class="avatar"
+    [src]="state().player.avatarId | avatarSrc: state().player.age"
+    alt="Avatar de {{ state().player.name }}"
+  />
+  <h2 id="sheet-title">{{ state().player.name }}</h2>
+
+  <dl class="profile">
+    <div>
+      <dt>Edad</dt>
+      <dd>{{ state().player.age }} años</dd>
+    </div>
+    <div>
+      <dt>Rol</dt>
+      <dd>{{ careerLabels[state().career.area] }}</dd>
+    </div>
+    <div>
+      <dt>Especialización</dt>
+      <dd>{{ specializationLabels[state().career.specialization ?? ''] ?? 'Por definir' }}</dd>
+    </div>
+    <div>
+      <dt>Background</dt>
+      <dd>{{ backgroundLabels[state().player.background] }}</dd>
+    </div>
+  </dl>
+
+  <h3>Estadísticas</h3>
+  <dl class="stats">
+    <div>
+      <dt>Salario</dt>
+      <dd>{{ state().stats.salary | number: '1.0-0' }} €/año</dd>
+    </div>
+    <div class="stat experience">
+      <dt>Experiencia</dt>
+      <dd>{{ state().stats.experience }}/100</dd>
+      <div class="bar" aria-hidden="true">
+        <span [style.width.%]="statLevel(state().stats.experience)"></span>
+      </div>
+    </div>
+    <div class="stat reputation">
+      <dt>Reputación</dt>
+      <dd>{{ state().stats.reputation }}/100</dd>
+      <div class="bar" aria-hidden="true">
+        <span [style.width.%]="statLevel(state().stats.reputation)"></span>
+      </div>
+    </div>
+    <div class="stat stress">
+      <dt>Estrés</dt>
+      <dd>{{ state().stats.stress }}/100</dd>
+      <div class="bar" aria-hidden="true">
+        <span [style.width.%]="statLevel(state().stats.stress)"></span>
+      </div>
+    </div>
+  </dl>
+</aside>

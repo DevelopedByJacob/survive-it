@@ -1,0 +1,233 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+main {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  padding: 6rem 2rem 2rem;
+}
+.end-layout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 19rem) minmax(0, 46rem);
+  justify-content: center;
+  align-items: start;
+  gap: 1.5rem;
+}
+.summary-card {
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid #34405c;
+  border-radius: 1rem;
+  background: #1e293b;
+}
+.eyebrow {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+h1 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(2.25rem, 7vw, 4rem);
+}
+.final-outcome {
+  color: #cbd5e1;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+.totals div {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #0f172a;
+}
+.totals span {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+.totals strong {
+  display: block;
+  margin-top: 0.3rem;
+  color: #7dd3fc;
+  font-size: 1.3rem;
+}
+.history {
+  padding-top: 1rem;
+  border-top: 1px solid #34405c;
+}
+.achievements {
+  padding-top: 1rem;
+  border-top: 1px solid #34405c;
+}
+.achievements h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.achievements-count {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.achievements ul {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+.achievements li {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: #172554;
+  border: 1px solid transparent;
+}
+.achievements li.locked {
+  background: #0f172a;
+}
+.achievements li.locked > div {
+  opacity: 0.7;
+}
+.achievements li.rarity-gold {
+  border-color: #facc15;
+}
+.achievements li.rarity-silver {
+  border-color: #cbd5e1;
+}
+.achievements li.locked.rarity-gold,
+.achievements li.locked.rarity-silver {
+  border-color: #34405c;
+}
+.achievements img,
+.achievement-fallback {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 2.5rem;
+}
+.achievement-fallback {
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: #334155;
+  color: #facc15;
+  font-size: 1.25rem;
+}
+.achievements li.locked .achievement-fallback {
+  color: #020617;
+}
+.achievements small {
+  display: block;
+  margin-top: 0.2rem;
+}
+.achievements em {
+  display: block;
+  margin-top: 0.35rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-style: normal;
+}
+.hint-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+.hint-row em {
+  margin-top: 0;
+}
+.hint-toggle {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #475569;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #7dd3fc;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.hint-toggle:hover,
+.hint-toggle[aria-expanded='true'] {
+  border-color: #7dd3fc;
+  background: #172554;
+}
+.hint-text {
+  margin-top: 0.35rem;
+}
+h2 {
+  font-size: 1.1rem;
+}
+ol {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+li {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: #0f172a;
+}
+small {
+  color: #94a3b8;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+button,
+a {
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #38bdf8;
+  color: #082f49;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+a,
+button.secondary {
+  background: #334155;
+  color: #e2e8f0;
+}
+.share-feedback {
+  align-self: center;
+  color: #7dd3fc;
+  font-size: 0.85rem;
+}
+@media (max-width: 58rem) {
+  .end-layout {
+    grid-template-columns: minmax(0, 46rem);
+  }
+}
+@media (max-width: 42rem) {
+  main {
+    padding: 1rem;
+  }
+  .totals {
+    grid-template-columns: 1fr;
+  }
+  li {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}

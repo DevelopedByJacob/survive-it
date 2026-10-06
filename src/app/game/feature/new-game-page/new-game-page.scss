@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background: #121826;
+  color: #f8fafc;
+  font-family: Inter, system-ui, sans-serif;
+}
+main {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 2rem;
+}
+
+.history-link {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #7dd3fc;
+}
+@media (max-width: 42rem) {
+  main {
+    padding: 1rem;
+  }
+}
